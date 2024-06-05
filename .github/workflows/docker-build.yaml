@@ -21,8 +21,8 @@ jobs:
 
       - name: Set up KUBECONFIG
         run: |
-        mkdir -p $HOME/.kube
-        echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
+            mkdir -p $HOME/.kube
+            echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
 
       - name: Deploy to AKS
         run: kubectl get pods -n kube-system # Replace with your actual manifest file
