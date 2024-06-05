@@ -1,0 +1,26 @@
+name: Build, Push, and Deploy Docker Image
+
+on:
+  push:
+    paths:
+      - "index.html"
+
+jobs:
+  build-push-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+          
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: 'latest'
+
+      - name: Set up KUBECONFIG
+        run: echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
+
+      - name: Deploy to AKS
+        run: kubectl get pods -n kube-system # Replace with your actual manifest file

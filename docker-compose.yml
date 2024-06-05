@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  myapp:
+    image: ilhambelhaj/ilham-web-app:latest
+    deploy:
+      placement:
+        constraints:
+          - node.role == worker
+    ports:
+      - "80:80"
